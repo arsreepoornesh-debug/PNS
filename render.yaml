@@ -1,0 +1,49 @@
+# render.yaml — Deploy AI Resume Analyzer backend on Render (free tier)
+# 1. Push this repo to GitHub
+# 2. Go to https://dashboard.render.com → New → Blueprint
+# 3. Connect your repo — Render reads this file and provisions everything automatically
+
+services:
+  # ────────────────────────────────────────────────
+  # Backend  ─ FastAPI
+  # ────────────────────────────────────────────────
+  - type: web
+    name: ai-resume-analyzer-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free            # Free tier: 512 MB RAM, spins down after 15 min idle
+    healthCheckPath: /health
+    envVars:
+      # — Required: copy from Supabase → Settings → Database → Connection string
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ai-resume-db
+          property: connectionString
+
+      # — Required: change this to a random secret in production!
+      - key: SECRET_KEY
+        generateValue: true
+
+      # — Recommended: get free key at https://console.groq.com
+      - key: GROQ_API_KEY
+        value: ""             # paste your key here, or set it in the Render dashboard
+
+      - key: GROQ_MODEL
+        value: llama-3.1-8b-instant
+
+      - key: DEFAULT_AI_PROVIDER
+        value: groq
+
+      # — Your Vercel frontend URL (set after frontend is deployed)
+      # - key: BACKEND_CORS_ORIGINS
+      #   value: '["https://your-app.vercel.app"]'
+
+databases:
+  # ────────────────────────────────────────────────
+  # Free PostgreSQL ─ 1 GB storage, 97 day expiry on free plan
+  # Upgrade to $7/mo for persistent storage
+  # ────────────────────────────────────────────────
+  - name: ai-resume-db
+    plan: free
+    databaseName: resume_analyzer
+    user: resume_user

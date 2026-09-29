@@ -2,28 +2,41 @@ import logging
 from typing import Dict, Any, List
 from app.ai.base import AIProvider
 from app.ai.ollama_provider import OllamaProvider
+from app.ai.groq_provider import GroqProvider
 from app.core.config import settings
 from app.parsers.base import ParsedDocument
 from app.schemas.all_schemas import AIAnalysisResult, JDExtractedRequirements
 
 logger = logging.getLogger(__name__)
 
+
+def _build_default_provider() -> AIProvider:
+    """Select and instantiate the provider configured in settings."""
+    provider_name = settings.DEFAULT_AI_PROVIDER.lower()
+    if provider_name == "groq":
+        logger.info(f"AI provider: Groq (model={settings.GROQ_MODEL})")
+        return GroqProvider(api_key=settings.GROQ_API_KEY, model=settings.GROQ_MODEL)
+    elif provider_name == "ollama":
+        logger.info(f"AI provider: Ollama (model={settings.OLLAMA_MODEL})")
+        return OllamaProvider(base_url=settings.OLLAMA_BASE_URL, model=settings.OLLAMA_MODEL)
+    else:
+        logger.info("AI provider: rule_based (deterministic fallback)")
+        return OllamaProvider(base_url="http://localhost:11434", model="")
+
+
 class AIService:
     def __init__(self, provider: AIProvider = None):
-        self.provider = provider or OllamaProvider(
-            base_url=settings.OLLAMA_BASE_URL,
-            model=settings.OLLAMA_MODEL
-        )
-        
+        self.provider = provider or _build_default_provider()
+
     def set_provider(self, provider: AIProvider):
         self.provider = provider
-        
+
     async def check_health(self) -> Dict[str, Any]:
         return await self.provider.check_health()
-        
+
     async def extract_job_requirements(self, job_title: str, job_description: str) -> JDExtractedRequirements:
         return await self.provider.extract_job_requirements(job_title, job_description)
-        
+
     async def analyze_resume(
         self,
         job_title: str,
@@ -32,7 +45,7 @@ class AIService:
         parsed_doc: ParsedDocument,
         weights: Dict[str, float],
         thresholds: Dict[str, float],
-        mandatory_rule: str
+        mandatory_rule: str,
     ) -> AIAnalysisResult:
         return await self.provider.analyze_resume(
             job_title=job_title,
@@ -41,11 +54,14 @@ class AIService:
             parsed_doc=parsed_doc,
             weights=weights,
             thresholds=thresholds,
-            mandatory_rule=mandatory_rule
+            mandatory_rule=mandatory_rule,
         )
 
-# Global singleton
+
+# Global singleton — provider chosen at startup from settings
 ai_service = AIService()
+
 
 def get_ai_service() -> AIService:
     return ai_service
+

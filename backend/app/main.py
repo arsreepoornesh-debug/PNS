@@ -21,27 +21,29 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     # Initialize DB tables
     logger.info("Initializing database tables...")
+    from app.core.config import settings as _settings
+    _is_sqlite = "sqlite" in _settings.DATABASE_URL
+
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
-        # Auto-migrate missing columns for SQLite if any
-        def migrate_columns(sync_conn):
-            import sqlite3
-            inspector = sync_conn.connection
-            # Check resume_analyses table columns
-            cur = sync_conn.connection.cursor() if hasattr(sync_conn.connection, 'cursor') else None
-            try:
-                cols_res = sync_conn.exec_driver_sql("PRAGMA table_info(resume_analyses)").fetchall()
-                existing_cols = {c[1] for c in cols_res}
-                if existing_cols:
-                    if "ai_generated_score" not in existing_cols:
-                        sync_conn.exec_driver_sql("ALTER TABLE resume_analyses ADD COLUMN ai_generated_score FLOAT DEFAULT 0.0")
-                    if "ai_generated_label" not in existing_cols:
-                        sync_conn.exec_driver_sql("ALTER TABLE resume_analyses ADD COLUMN ai_generated_label VARCHAR(50) DEFAULT 'Human Written'")
-                    if "ai_detection_details" not in existing_cols:
-                        sync_conn.exec_driver_sql("ALTER TABLE resume_analyses ADD COLUMN ai_detection_details JSON DEFAULT '{}'")
-            except Exception as e:
-                logger.warning(f"Schema migration check note: {e}")
-        await conn.run_sync(migrate_columns)
+
+        # Auto-migrate missing columns — SQLite only (PostgreSQL handles this via create_all)
+        if _is_sqlite:
+            def migrate_columns(sync_conn):
+                try:
+                    cols_res = sync_conn.exec_driver_sql("PRAGMA table_info(resume_analyses)").fetchall()
+                    existing_cols = {c[1] for c in cols_res}
+                    if existing_cols:
+                        if "ai_generated_score" not in existing_cols:
+                            sync_conn.exec_driver_sql("ALTER TABLE resume_analyses ADD COLUMN ai_generated_score FLOAT DEFAULT 0.0")
+                        if "ai_generated_label" not in existing_cols:
+                            sync_conn.exec_driver_sql("ALTER TABLE resume_analyses ADD COLUMN ai_generated_label VARCHAR(50) DEFAULT 'Human Written'")
+                        if "ai_detection_details" not in existing_cols:
+                            sync_conn.exec_driver_sql("ALTER TABLE resume_analyses ADD COLUMN ai_detection_details JSON DEFAULT '{}'")
+                except Exception as e:
+                    logger.warning(f"Schema migration check note: {e}")
+            await conn.run_sync(migrate_columns)
+
     logger.info("Database initialized successfully.")
     yield
     logger.info("Shutting down application...")
