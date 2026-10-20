@@ -1,5 +1,6 @@
 import os
 from typing import List
+from pydantic import field_validator
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
@@ -12,9 +13,28 @@ class Settings(BaseSettings):
 
     # Database
     # - Local:      sqlite+aiosqlite:///./resume_analyzer.db   (default)
-    # - Supabase:   postgresql+asyncpg://user:pass@host:5432/postgres
+    # - Supabase/Render: postgresql+asyncpg://user:pass@host:5432/postgres
     # Override by setting DATABASE_URL env var in Render / Railway dashboard.
     DATABASE_URL: str = "sqlite+aiosqlite:///./resume_analyzer.db"
+
+    @field_validator("DATABASE_URL", mode="before")
+    @classmethod
+    def assemble_db_connection(cls, v: str) -> str:
+        if isinstance(v, str):
+            # Render and cloud providers use postgres:// or postgresql://
+            # SQLAlchemy async requires postgresql+asyncpg://
+            if v.startswith("postgres://"):
+                v = v.replace("postgres://", "postgresql+asyncpg://", 1)
+            elif v.startswith("postgresql://") and not v.startswith("postgresql+asyncpg://"):
+                v = v.replace("postgresql://", "postgresql+asyncpg://", 1)
+            
+            # Clean sslmode query param if present for asyncpg compatibility
+            if "sslmode=require" in v:
+                v = v.replace("sslmode=require", "ssl=require")
+            elif "sslmode=disable" in v:
+                v = v.replace("sslmode=disable", "")
+                v = v.rstrip("?&")
+        return v
 
     # Storage
     STORAGE_TYPE: str = "local"  # "local" or "s3"
