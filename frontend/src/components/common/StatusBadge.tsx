@@ -13,8 +13,8 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = ''
 
   if (norm === 'MATCHED') {
     return (
-      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide bg-yellow-400/15 text-yellow-300 border border-yellow-400/30 ${className}`}>
-        {showIcon && <CheckCircle2 className="w-3.5 h-3.5 text-yellow-400" />}
+      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black tracking-wide bg-yellow-100 text-yellow-900 border border-yellow-300 shadow-2xs ${className}`}>
+        {showIcon && <CheckCircle2 className="w-3.5 h-3.5 text-yellow-600 stroke-[2.5]" />}
         ✓ MATCHED
       </span>
     );
@@ -22,8 +22,8 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = ''
 
   if (norm === 'PARTIALLY MATCHED' || norm === 'PARTIAL' || norm === 'PARTIAL MATCH') {
     return (
-      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-zinc-800/80 text-zinc-300 border border-zinc-700 ${className}`}>
-        {showIcon && <AlertTriangle className="w-3.5 h-3.5 text-zinc-400" />}
+      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide bg-zinc-100 text-zinc-800 border border-zinc-300 ${className}`}>
+        {showIcon && <AlertTriangle className="w-3.5 h-3.5 text-zinc-600" />}
         ⚠ PARTIAL MATCH
       </span>
     );
@@ -31,8 +31,8 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = ''
 
   if (norm === 'NOT MATCHED' || norm === 'NOT_MATCHED' || norm === 'REJECTED') {
     return (
-      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium tracking-wide bg-zinc-900 text-zinc-500 border border-zinc-800 ${className}`}>
-        {showIcon && <XCircle className="w-3.5 h-3.5 text-zinc-500" />}
+      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide bg-zinc-100 text-zinc-500 border border-zinc-200 ${className}`}>
+        {showIcon && <XCircle className="w-3.5 h-3.5 text-zinc-400" />}
         ✕ NOT MATCHED
       </span>
     );
@@ -41,7 +41,7 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = ''
   // Pipeline Stages
   if (norm === 'SHORTLISTED') {
     return (
-      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black tracking-wide bg-yellow-400 text-black shadow-sm ${className}`}>
+      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black tracking-wide bg-yellow-400 text-black shadow-2xs ${className}`}>
         <Award className="w-3.5 h-3.5 text-black stroke-[2.5]" />
         SHORTLISTED
       </span>
@@ -50,8 +50,8 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = ''
 
   if (norm === 'INTERVIEW') {
     return (
-      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide bg-zinc-800 text-white border border-zinc-700 ${className}`}>
-        <Clock className="w-3.5 h-3.5 text-yellow-400" />
+      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide bg-zinc-100 text-zinc-900 border border-zinc-300 ${className}`}>
+        <Clock className="w-3.5 h-3.5 text-yellow-600 stroke-[2.5]" />
         INTERVIEW
       </span>
     );
@@ -59,8 +59,8 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = ''
 
   if (norm === 'HIRED') {
     return (
-      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black tracking-wide bg-white text-black shadow-sm ${className}`}>
-        <UserCheck className="w-3.5 h-3.5 text-black stroke-[2.5]" />
+      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black tracking-wide bg-black text-white shadow-2xs ${className}`}>
+        <UserCheck className="w-3.5 h-3.5 text-yellow-400 stroke-[2.5]" />
         HIRED
       </span>
     );
