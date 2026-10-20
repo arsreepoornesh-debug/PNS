@@ -43,21 +43,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCreateJob }) => {
   const isAiOnline = aiStatus?.health.status === 'online';
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-slate-950/75 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 w-full border-b border-zinc-800 bg-black/85 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand */}
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-cyan-400 p-[1px] shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-all">
-              <div className="w-full h-full rounded-[11px] bg-slate-950 flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-indigo-400 group-hover:text-cyan-300 transition-colors" />
-              </div>
+            <div className="w-9 h-9 rounded-xl bg-yellow-400 flex items-center justify-center text-black font-black shadow-lg shadow-yellow-400/25 group-hover:scale-105 group-hover:bg-yellow-300 transition-all">
+              <Sparkles className="w-5 h-5 text-black" />
             </div>
             <div className="flex flex-col">
-              <span className="font-extrabold text-base tracking-tight bg-gradient-to-r from-white via-indigo-100 to-indigo-300 bg-clip-text text-transparent">
-                TalentMatch AI
+              <span className="font-extrabold text-base tracking-tight text-white group-hover:text-yellow-400 transition-colors">
+                TalentMatch <span className="text-yellow-400">AI</span>
               </span>
-              <span className="text-[10px] font-medium text-slate-400 tracking-wider uppercase -mt-0.5">
+              <span className="text-[10px] font-semibold text-zinc-400 tracking-wider uppercase -mt-0.5">
                 Resume Intelligence
               </span>
             </div>
@@ -72,13 +70,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCreateJob }) => {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                  className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-sm font-semibold transition-all ${
                     isActive
-                      ? 'bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 shadow-sm shadow-indigo-500/10'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+                      ? 'bg-yellow-400/15 text-yellow-400 border border-yellow-400/30 shadow-sm shadow-yellow-400/10'
+                      : 'text-zinc-400 hover:text-white hover:bg-zinc-900'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-indigo-400' : 'text-slate-500'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-yellow-400' : 'text-zinc-500'}`} />
                   {item.label}
                 </Link>
               );
@@ -91,11 +89,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCreateJob }) => {
           {/* AI Engine Status Pill */}
           <Link
             href="/settings"
-            className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border border-indigo-500/20 bg-indigo-500/10 text-indigo-300 hover:bg-indigo-500/15 transition-all"
+            className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold border border-yellow-400/30 bg-yellow-400/10 text-yellow-300 hover:bg-yellow-400/15 transition-all shadow-sm"
             title={aiStatus?.health.message || 'AI Engine status'}
           >
-            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-sm shadow-emerald-400" />
-            <Cpu className="w-3.5 h-3.5 text-indigo-400" />
+            <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse shadow-sm shadow-yellow-400" />
+            <Cpu className="w-3.5 h-3.5 text-yellow-400" />
             <span className="tracking-wide">
               {aiStatus?.provider === 'groq'
                 ? `Groq AI (${aiStatus?.config?.model || 'LLaMA 3.1'})`
@@ -109,9 +107,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCreateJob }) => {
           {onOpenCreateJob && (
             <button
               onClick={onOpenCreateJob}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white text-xs sm:text-sm font-semibold shadow-md shadow-indigo-600/30 hover:shadow-indigo-500/40 transition-all active:scale-95"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-black text-xs sm:text-sm font-black shadow-md shadow-yellow-400/25 hover:shadow-yellow-400/40 transition-all active:scale-95 cursor-pointer"
             >
-              <Plus className="w-4 h-4" />
+              <Plus className="w-4 h-4 text-black stroke-[3]" />
               <span>Create Job</span>
             </button>
           )}

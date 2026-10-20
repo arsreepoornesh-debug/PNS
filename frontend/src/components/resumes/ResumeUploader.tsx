@@ -129,20 +129,20 @@ export const ResumeUploader: React.FC<ResumeUploaderProps> = ({
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-xs">
+    <div className="bg-zinc-950 rounded-2xl border border-zinc-800 p-5 shadow-xs">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold">
-            <UploadCloud className="w-4 h-4" />
+          <div className="w-7 h-7 rounded-lg bg-yellow-400/10 text-yellow-400 flex items-center justify-center font-bold">
+            <UploadCloud className="w-4 h-4 text-yellow-400" />
           </div>
-          <h3 className="font-bold text-sm text-slate-900 dark:text-white">Batch Resume Ingestion & AI Matching</h3>
+          <h3 className="font-bold text-sm text-white">Batch Resume Ingestion & AI Matching</h3>
         </div>
-        <span className="text-[11px] text-slate-400 font-medium">Supports PDF & DOCX (up to 100+ files)</span>
+        <span className="text-[11px] text-zinc-400 font-medium">Supports PDF & DOCX (up to 100+ files)</span>
       </div>
 
       {error && (
-        <div className="mb-4 p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50 text-rose-600 dark:text-rose-300 text-xs flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 flex-shrink-0" />
+        <div className="mb-4 p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs flex items-center gap-2">
+          <AlertCircle className="w-4 h-4 flex-shrink-0 text-yellow-400" />
           <span>{error}</span>
         </div>
       )}
@@ -157,8 +157,8 @@ export const ResumeUploader: React.FC<ResumeUploaderProps> = ({
           onClick={() => fileInputRef.current?.click()}
           className={`relative border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-all ${
             dragActive
-              ? 'border-indigo-500 bg-indigo-50/50 dark:bg-indigo-950/30'
-              : 'border-slate-300 dark:border-slate-700 hover:border-indigo-400 hover:bg-slate-50/50 dark:hover:bg-slate-800/30'
+              ? 'border-yellow-400 bg-yellow-400/10'
+              : 'border-zinc-800 hover:border-yellow-400/50 hover:bg-zinc-900/40'
           }`}
         >
           <input
@@ -170,14 +170,14 @@ export const ResumeUploader: React.FC<ResumeUploaderProps> = ({
             className="hidden"
           />
           <div className="flex flex-col items-center justify-center gap-2">
-            <div className="w-12 h-12 rounded-full bg-indigo-50 dark:bg-slate-800 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shadow-xs">
-              <UploadCloud className="w-6 h-6" />
+            <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-yellow-400 shadow-xs">
+              <UploadCloud className="w-6 h-6 text-yellow-400" />
             </div>
             <div>
-              <p className="text-sm font-bold text-slate-700 dark:text-slate-200">
-                Drag and drop candidate resumes here, or <span className="text-indigo-600 dark:text-indigo-400 underline">browse files</span>
+              <p className="text-sm font-bold text-zinc-200">
+                Drag and drop candidate resumes here, or <span className="text-yellow-400 underline font-extrabold">browse files</span>
               </p>
-              <p className="text-xs text-slate-400 mt-0.5">Bulk upload 10, 50, or 100+ PDF / DOCX resumes at once</p>
+              <p className="text-xs text-zinc-400 mt-0.5">Bulk upload 10, 50, or 100+ PDF / DOCX resumes at once</p>
             </div>
           </div>
         </div>
@@ -226,16 +226,16 @@ export const ResumeUploader: React.FC<ResumeUploaderProps> = ({
             <button
               onClick={handleUploadAndAnalyze}
               disabled={isUploading}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xs font-bold shadow-md shadow-indigo-500/20 active:scale-95 transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-black text-xs font-black shadow-md shadow-yellow-400/25 active:scale-95 transition-all cursor-pointer"
             >
               {isUploading ? (
                 <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <Loader2 className="w-4 h-4 animate-spin text-black" />
                   <span>Uploading files...</span>
                 </>
               ) : (
                 <>
-                  <Sparkles className="w-4 h-4" />
+                  <Sparkles className="w-4 h-4 text-black" />
                   <span>Upload & Analyze {files.length} Resumes</span>
                 </>
               )}
@@ -246,30 +246,30 @@ export const ResumeUploader: React.FC<ResumeUploaderProps> = ({
 
       {/* Batch Processing Progress Bar */}
       {(isAnalyzing || progress?.in_progress) && (
-        <div className="mt-4 p-5 rounded-xl bg-slate-900 text-white border border-slate-800 space-y-3">
+        <div className="mt-4 p-5 rounded-xl bg-zinc-950 text-white border border-zinc-800 space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <Loader2 className="w-5 h-5 text-indigo-400 animate-spin" />
+              <Loader2 className="w-5 h-5 text-yellow-400 animate-spin" />
               <div>
                 <h4 className="text-sm font-bold tracking-tight text-white">
                   Analyzing {progress?.completed || 0} / {progress?.total_resumes || files.length} resumes...
                 </h4>
                 {progress?.current_file && (
-                  <p className="text-[11px] text-indigo-300 truncate max-w-sm">
+                  <p className="text-[11px] text-zinc-400 truncate max-w-sm">
                     Processing: {progress.current_file}
                   </p>
                 )}
               </div>
             </div>
-            <span className="text-base font-mono font-black text-indigo-400">
+            <span className="text-base font-mono font-black text-yellow-400">
               {progress?.percent || 0}%
             </span>
           </div>
 
           {/* Progress track */}
-          <div className="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+          <div className="w-full bg-zinc-800 h-2.5 rounded-full overflow-hidden">
             <div
-              className="bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-400 h-full transition-all duration-300 ease-out"
+              className="bg-yellow-400 h-full transition-all duration-300 ease-out"
               style={{ width: `${progress?.percent || 5}%` }}
             />
           </div>

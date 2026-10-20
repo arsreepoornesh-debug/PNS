@@ -15,15 +15,15 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
 }) => {
   const rounded = Math.round(score);
   
-  let colorClass = 'text-rose-500 stroke-rose-500';
-  let bgClass = 'bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-900/50';
+  let colorClass = 'text-zinc-600 stroke-zinc-600';
+  let bgClass = 'bg-zinc-900 text-zinc-400 border-zinc-800';
   
   if (rounded >= 75) {
-    colorClass = 'text-emerald-500 stroke-emerald-500';
-    bgClass = 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50';
+    colorClass = 'text-yellow-400 stroke-yellow-400';
+    bgClass = 'bg-yellow-400/15 text-yellow-300 border-yellow-400/35';
   } else if (rounded >= 50) {
-    colorClass = 'text-amber-500 stroke-amber-500';
-    bgClass = 'bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-900/50';
+    colorClass = 'text-zinc-300 stroke-zinc-300';
+    bgClass = 'bg-zinc-800 text-zinc-200 border-zinc-700';
   }
 
   if (size === 'sm') {
