@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafafa;
-  --foreground: #09090b;
+  --background: #f9fafb;
+  --foreground: #111827;
   --card-bg: #ffffff;
-  --card-border: #e4e4e7;
+  --card-border: #e5e7eb;
   --accent-yellow: #facc15;
   --accent-yellow-dark: #ca8a04;
+  --accent-indigo: #6366f1;
 }
 
 @theme inline {
@@ -16,55 +17,113 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* ─── Base ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
 ::selection {
-  background-color: #facc15;
-  color: #000000;
+  background-color: #fde68a;
+  color: #1c1917;
 }
+
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: #fafafa;
-  color: #09090b;
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+  background-color: #f9fafb;
+  color: #111827;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, system-ui, sans-serif;
   letter-spacing: -0.011em;
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(250, 204, 21, 0.07) 0px, transparent 40%),
-    radial-gradient(at 100% 0%, rgba(250, 204, 21, 0.05) 0px, transparent 35%),
-    radial-gradient(at 50% 100%, rgba(0, 0, 0, 0.02) 0px, transparent 50%);
-  background-attachment: fixed;
-  background-size: cover;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Custom modern scrollbar - Light Theme */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #f4f4f5;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(234, 179, 8, 0.4);
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(234, 179, 8, 0.7);
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #f3f4f6; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+/* ─── Form Elements — Universal High Contrast ───────────── */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea {
+  color: #09090b !important;
+  background-color: #ffffff;
+  font-size: 0.875rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* Glass & Card styling */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid #e4e4e7;
+select {
+  color: #09090b;
+  font-size: 0.875rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.glass-panel-hover {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+input::placeholder, textarea::placeholder {
+  color: #9ca3af !important;
+  opacity: 1;
 }
-.glass-panel-hover:hover {
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.25);
+  border-color: #facc15 !important;
+}
+
+select option {
+  background-color: #ffffff;
+  color: #111827;
+}
+
+/* ─── Micro-animations ───────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in-up  { animation: fadeInUp  0.25s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade-in     { animation: fadeIn    0.2s  ease both; }
+.animate-slide-down  { animation: slideDown 0.22s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-scale-in    { animation: scaleIn   0.2s  cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* ─── Card base ──────────────────────────────────────────── */
+.card {
   background: #ffffff;
-  border-color: rgba(234, 179, 8, 0.6);
-  box-shadow: 0 10px 25px -5px rgba(234, 179, 8, 0.15);
-  transform: translateY(-2px);
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
 }
+.card:hover {
+  border-color: #fde68a;
+  box-shadow: 0 4px 14px rgba(250, 204, 21, 0.12), 0 2px 6px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+
+/* ─── Buttons ────────────────────────────────────────────── */
+button { cursor: pointer; transition: all 0.15s ease; }
+button:active:not(:disabled) { transform: scale(0.97); }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ─── Focus ring ─────────────────────────────────────────── */
+:focus-visible { outline: 2px solid #facc15; outline-offset: 2px; }
+
+/* ─── Table ──────────────────────────────────────────────── */
+th { font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.625rem; }
+td { color: #111827; }
+
+/* ─── Modal ──────────────────────────────────────────────── */
+.modal-backdrop { background: rgba(17, 24, 39, 0.5); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+
+/* ─── Ensure dark-bg pages don't break inherited text color ── */
+[class*="bg-slate-900"] td,
+[class*="bg-slate-950"] td { color: inherit; }

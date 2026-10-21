@@ -167,74 +167,74 @@ export const CandidateDetailModal: React.FC<CandidateDetailModalProps> = ({
             <div className="grid grid-cols-1 md:grid-cols-12 gap-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700/60">
               {/* Contact Details */}
               <div className="md:col-span-8 space-y-2">
-                <div className="flex flex-wrap gap-4 text-xs text-slate-600 dark:text-slate-300">
+                <div className="flex flex-wrap gap-4 text-xs text-zinc-600">
                   {candidate.email && (
                     <span className="flex items-center gap-1.5 font-medium">
-                      <Mail className="w-3.5 h-3.5 text-indigo-500" />
+                      <Mail className="w-3.5 h-3.5 text-yellow-600" />
                       {candidate.email}
                     </span>
                   )}
                   {candidate.phone && (
                     <span className="flex items-center gap-1.5 font-medium">
-                      <Phone className="w-3.5 h-3.5 text-indigo-500" />
+                      <Phone className="w-3.5 h-3.5 text-yellow-600" />
                       {candidate.phone}
                     </span>
                   )}
                   {candidate.location && (
                     <span className="flex items-center gap-1.5 font-medium">
-                      <MapPin className="w-3.5 h-3.5 text-indigo-500" />
+                      <MapPin className="w-3.5 h-3.5 text-yellow-600" />
                       {candidate.location}
                     </span>
                   )}
                 </div>
 
                 {candidate.education_summary && (
-                  <div className="flex items-start gap-1.5 text-xs text-slate-600 dark:text-slate-300 pt-1">
-                    <GraduationCap className="w-3.5 h-3.5 text-indigo-500 flex-shrink-0 mt-0.5" />
+                  <div className="flex items-start gap-1.5 text-xs text-zinc-600 pt-1">
+                    <GraduationCap className="w-3.5 h-3.5 text-yellow-600 flex-shrink-0 mt-0.5" />
                     <span className="line-clamp-2">{candidate.education_summary}</span>
                   </div>
                 )}
 
                 {/* AI Recruiter-Oriented Evidence Summary */}
                 {analysis?.ai_summary && (
-                  <div className="mt-3 p-3 rounded-xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/60 dark:border-indigo-800/50 text-xs text-indigo-950 dark:text-indigo-200 leading-relaxed">
-                    <div className="flex items-center gap-1.5 font-bold text-indigo-700 dark:text-indigo-400 mb-1">
-                      <Sparkles className="w-3.5 h-3.5" />
+                  <div className="mt-3 p-3.5 rounded-xl bg-yellow-50/80 border border-yellow-200 text-xs text-zinc-800 leading-relaxed shadow-2xs">
+                    <div className="flex items-center gap-1.5 font-bold text-yellow-800 mb-1">
+                      <Sparkles className="w-3.5 h-3.5 text-yellow-600" />
                       <span>AI Evidence Summary (Objective & Bias-Free)</span>
                     </div>
-                    <p>{analysis.ai_summary}</p>
+                    <p className="font-medium text-zinc-700">{analysis.ai_summary}</p>
                   </div>
                 )}
               </div>
 
               {/* Match Score Display */}
-              <div className="md:col-span-4 flex flex-col items-center justify-center p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center">
+              <div className="md:col-span-4 flex flex-col items-center justify-center p-3 rounded-xl bg-white border border-zinc-200 text-center shadow-2xs">
                 <ScoreGauge score={candidate.analysis?.match_score ?? candidate.match_score ?? 0} size="lg" showLabel={true} />
-                <div className="mt-2 text-[11px] font-semibold text-slate-500">
+                <div className="mt-2 text-[11px] font-bold text-zinc-500">
                   Calculated from verified evidence
                 </div>
               </div>
             </div>
 
             {/* Recruiter Action Bar: [Shortlist] [Maybe] [Reject] + Stage selector */}
-            <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-xl bg-slate-900 text-white">
+            <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl bg-zinc-950 text-white shadow-xs">
               <div className="flex items-center gap-2">
-                <span className="text-xs text-slate-300 font-semibold">Decision:</span>
+                <span className="text-xs text-zinc-300 font-bold">Decision:</span>
                 <button
                   onClick={() => handleShortlistDecision('shortlist')}
-                  className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all active:scale-95 shadow-xs"
+                  className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all active:scale-95 shadow-xs cursor-pointer"
                 >
                   ✓ Shortlist
                 </button>
                 <button
                   onClick={() => handleShortlistDecision('maybe')}
-                  className="px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold transition-all active:scale-95 shadow-xs"
+                  className="px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold transition-all active:scale-95 shadow-xs cursor-pointer"
                 >
                   ⚠ Maybe
                 </button>
                 <button
                   onClick={() => handleShortlistDecision('reject')}
-                  className="px-3.5 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold transition-all active:scale-95 shadow-xs"
+                  className="px-3.5 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold transition-all active:scale-95 shadow-xs cursor-pointer"
                 >
                   ✕ Reject
                 </button>
@@ -242,11 +242,11 @@ export const CandidateDetailModal: React.FC<CandidateDetailModalProps> = ({
 
               {/* Stage dropdown */}
               <div className="flex items-center gap-2 text-xs">
-                <span className="text-slate-400">Move Stage:</span>
+                <span className="text-zinc-400 font-medium">Pipeline Stage:</span>
                 <select
                   value={candidate.stage}
                   onChange={(e: any) => handleStageChange(e.target.value)}
-                  className="px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-xs text-white font-semibold"
+                  className="px-3 py-1.5 rounded-lg bg-zinc-800 border border-zinc-700 text-xs text-white font-bold cursor-pointer focus:outline-none"
                 >
                   <option value="NEW">NEW</option>
                   <option value="MATCHED">MATCHED</option>
@@ -259,33 +259,33 @@ export const CandidateDetailModal: React.FC<CandidateDetailModalProps> = ({
             </div>
 
             {/* Navigation Sub-Tabs */}
-            <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800">
+            <div className="flex items-center gap-2 border-b border-zinc-200">
               <button
                 onClick={() => setActiveTab('EVIDENCE')}
-                className={`px-4 py-2 text-xs font-bold border-b-2 transition-all ${
+                className={`px-4 py-2.5 text-xs font-bold border-b-2 transition-all cursor-pointer ${
                   activeTab === 'EVIDENCE'
-                    ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400'
-                    : 'border-transparent text-slate-500 hover:text-slate-800'
+                    ? 'border-yellow-400 text-zinc-950 font-black'
+                    : 'border-transparent text-zinc-500 hover:text-zinc-800'
                 }`}
               >
                 Requirement Evidence Inspector
               </button>
               <button
                 onClick={() => setActiveTab('SCORING')}
-                className={`px-4 py-2 text-xs font-bold border-b-2 transition-all ${
+                className={`px-4 py-2.5 text-xs font-bold border-b-2 transition-all cursor-pointer ${
                   activeTab === 'SCORING'
-                    ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400'
-                    : 'border-transparent text-slate-500 hover:text-slate-800'
+                    ? 'border-yellow-400 text-zinc-950 font-black'
+                    : 'border-transparent text-zinc-500 hover:text-zinc-800'
                 }`}
               >
                 Score Breakdown & Algorithm
               </button>
               <button
                 onClick={() => setActiveTab('NOTES')}
-                className={`px-4 py-2 text-xs font-bold border-b-2 transition-all ${
+                className={`px-4 py-2.5 text-xs font-bold border-b-2 transition-all cursor-pointer ${
                   activeTab === 'NOTES'
-                    ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400'
-                    : 'border-transparent text-slate-500 hover:text-slate-800'
+                    ? 'border-yellow-400 text-zinc-950 font-black'
+                    : 'border-transparent text-zinc-500 hover:text-zinc-800'
                 }`}
               >
                 Recruiter Notes ({candidate.notes.length})
@@ -538,7 +538,7 @@ export const CandidateDetailModal: React.FC<CandidateDetailModalProps> = ({
                     value={noteText}
                     onChange={(e) => setNoteText(e.target.value)}
                     placeholder="Add private evaluation notes (e.g. 'Strong FastAPI experience. Schedule technical interview.')..."
-                    className="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-indigo-500"
+                    className="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-indigo-500"
                     required
                   />
                   <div className="flex justify-end">

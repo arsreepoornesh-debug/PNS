@@ -210,7 +210,7 @@ export const CandidateTable: React.FC<CandidateTableProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by candidate name, skill, email, or keywords..."
-              className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-xs focus:outline-hidden focus:ring-2 focus:ring-indigo-500"
+              className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-indigo-500"
             />
           </div>
 
@@ -219,13 +219,13 @@ export const CandidateTable: React.FC<CandidateTableProps> = ({
             <select
               value={minExperience}
               onChange={(e) => setMinExperience(e.target.value === '' ? '' : Number(e.target.value))}
-              className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-xs text-slate-700 dark:text-slate-300"
+              className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-indigo-500"
             >
-              <option value="">All Experience Levels</option>
-              <option value="1">1+ years experience</option>
-              <option value="2">2+ years experience</option>
-              <option value="3">3+ years experience</option>
-              <option value="5">5+ years experience</option>
+              <option className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white" value="">All Experience Levels</option>
+              <option className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white" value="1">1+ years experience</option>
+              <option className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white" value="2">2+ years experience</option>
+              <option className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white" value="3">3+ years experience</option>
+              <option className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white" value="5">5+ years experience</option>
             </select>
           </div>
 
@@ -234,13 +234,13 @@ export const CandidateTable: React.FC<CandidateTableProps> = ({
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-xs text-slate-700 dark:text-slate-300 font-semibold"
+              className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white font-semibold focus:outline-hidden focus:ring-2 focus:ring-indigo-500"
             >
-              <option value="highest_match">Highest Match First (Default)</option>
-              <option value="lowest_match">Lowest Match First</option>
-              <option value="most_experience">Most Experience</option>
-              <option value="name">Candidate Name (A-Z)</option>
-              <option value="recent">Recently Analyzed</option>
+              <option className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white" value="highest_match">Highest Match First (Default)</option>
+              <option className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white" value="lowest_match">Lowest Match First</option>
+              <option className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white" value="most_experience">Most Experience</option>
+              <option className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white" value="name">Candidate Name (A-Z)</option>
+              <option className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white" value="recent">Recently Analyzed</option>
             </select>
           </div>
         </div>

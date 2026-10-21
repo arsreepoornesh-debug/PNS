@@ -275,18 +275,18 @@ export const ResumeUploader: React.FC<ResumeUploaderProps> = ({
           </div>
 
           {/* Detailed status counts */}
-          <div className="grid grid-cols-3 gap-2 pt-2 border-t border-slate-800/80 text-center text-xs">
-            <div className="bg-slate-800/50 p-1.5 rounded-lg">
-              <span className="text-slate-400 block text-[10px]">Completed</span>
-              <span className="font-bold text-emerald-400">{progress?.completed || 0}</span>
+          <div className="grid grid-cols-3 gap-2 pt-2 border-t border-zinc-100 text-center text-xs">
+            <div className="bg-zinc-50 border border-zinc-200/80 p-2 rounded-xl">
+              <span className="text-zinc-500 block text-[10px] font-bold uppercase">Completed</span>
+              <span className="font-black text-emerald-700 text-sm">{progress?.completed || 0}</span>
             </div>
-            <div className="bg-slate-800/50 p-1.5 rounded-lg">
-              <span className="text-slate-400 block text-[10px]">Pending</span>
-              <span className="font-bold text-amber-400">{progress?.pending || 0}</span>
+            <div className="bg-zinc-50 border border-zinc-200/80 p-2 rounded-xl">
+              <span className="text-zinc-500 block text-[10px] font-bold uppercase">Pending</span>
+              <span className="font-black text-amber-700 text-sm">{progress?.pending || 0}</span>
             </div>
-            <div className="bg-slate-800/50 p-1.5 rounded-lg">
-              <span className="text-slate-400 block text-[10px]">Failed</span>
-              <span className="font-bold text-rose-400">{progress?.failed || 0}</span>
+            <div className="bg-zinc-50 border border-zinc-200/80 p-2 rounded-xl">
+              <span className="text-zinc-500 block text-[10px] font-bold uppercase">Failed</span>
+              <span className="font-black text-rose-700 text-sm">{progress?.failed || 0}</span>
             </div>
           </div>
         </div>

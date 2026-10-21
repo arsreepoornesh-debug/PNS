@@ -181,31 +181,31 @@ export const CreateJobModal: React.FC<CreateJobModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm overflow-y-auto">
-      <div className="relative w-full max-w-3xl my-8 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm overflow-y-auto">
+      <div className="relative w-full max-w-3xl my-8 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
         {/* Modal Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-gray-50">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-yellow-400/10 text-yellow-400 flex items-center justify-center font-bold">
-              <FileText className="w-4 h-4 text-yellow-400" />
+            <div className="w-9 h-9 rounded-xl bg-yellow-400 flex items-center justify-center shadow-sm">
+              <FileText className="w-4 h-4 text-black" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-slate-900 dark:text-white">Create New Job Description</h2>
-              <p className="text-xs text-slate-500">Define requirements, skills, and transparent scoring weights</p>
+              <h2 className="text-base font-bold text-gray-900">Create New Job Opening</h2>
+              <p className="text-xs text-gray-500">Define requirements, skills, and scoring weights</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="p-2 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Modal Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-5 max-h-[80vh] overflow-y-auto">
+        <form onSubmit={handleSubmit} className="p-6 space-y-5 max-h-[80vh] overflow-y-auto bg-white">
           {error && (
-            <div className="p-3.5 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50 text-rose-600 dark:text-rose-300 text-xs flex items-center gap-2">
+            <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 flex-shrink-0" />
               <span>{error}</span>
             </div>
@@ -214,21 +214,21 @@ export const CreateJobModal: React.FC<CreateJobModalProps> = ({
           {/* Core Info */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+              <label className="block text-xs font-bold text-zinc-800 mb-1.5">
                 Job Title *
               </label>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="e.g. Python Backend Developer"
-                className="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-sm focus:outline-hidden focus:ring-2 focus:ring-indigo-500 font-medium"
+                placeholder="e.g. Senior Full Stack Engineer"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-zinc-300 text-sm text-zinc-950 font-medium placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400 shadow-2xs"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+              <label className="block text-xs font-bold text-zinc-800 mb-1.5">
                 Department
               </label>
               <input
@@ -236,12 +236,12 @@ export const CreateJobModal: React.FC<CreateJobModalProps> = ({
                 value={department}
                 onChange={(e) => setDepartment(e.target.value)}
                 placeholder="e.g. Engineering"
-                className="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-sm focus:outline-hidden focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-zinc-300 text-sm text-zinc-950 font-medium placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400 shadow-2xs"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+              <label className="block text-xs font-bold text-zinc-800 mb-1.5">
                 Experience Required
               </label>
               <div className="flex gap-2">
@@ -250,7 +250,7 @@ export const CreateJobModal: React.FC<CreateJobModalProps> = ({
                   value={experienceRequired}
                   onChange={(e) => setExperienceRequired(e.target.value)}
                   placeholder="e.g. 2+ years"
-                  className="w-2/3 px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-sm"
+                  className="w-2/3 px-3.5 py-2.5 rounded-xl bg-white border border-zinc-300 text-sm text-zinc-950 font-medium placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400 shadow-2xs"
                 />
                 <input
                   type="number"
@@ -260,13 +260,13 @@ export const CreateJobModal: React.FC<CreateJobModalProps> = ({
                   value={experienceMinYears}
                   onChange={(e) => setExperienceMinYears(parseFloat(e.target.value) || 0)}
                   title="Min years (numeric)"
-                  className="w-1/3 px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-sm"
+                  className="w-1/3 px-3.5 py-2.5 rounded-xl bg-white border border-zinc-300 text-sm text-zinc-950 font-medium placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400 shadow-2xs"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+              <label className="block text-xs font-bold text-zinc-800 mb-1.5">
                 Location & Type
               </label>
               <div className="flex gap-2">
@@ -274,13 +274,13 @@ export const CreateJobModal: React.FC<CreateJobModalProps> = ({
                   type="text"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  placeholder="e.g. San Francisco / Remote"
-                  className="w-2/3 px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-sm"
+                  placeholder="e.g. Remote / Hybrid"
+                  className="w-2/3 px-3.5 py-2.5 rounded-xl bg-white border border-zinc-300 text-sm text-zinc-950 font-medium placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400 shadow-2xs"
                 />
                 <select
                   value={employmentType}
                   onChange={(e) => setEmploymentType(e.target.value)}
-                  className="w-1/3 px-2 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-xs"
+                  className="w-1/3 px-2.5 py-2.5 rounded-xl bg-white border border-zinc-300 text-sm text-zinc-950 font-medium focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400 shadow-2xs"
                 >
                   <option value="Full-time">Full-time</option>
                   <option value="Contract">Contract</option>
@@ -294,50 +294,50 @@ export const CreateJobModal: React.FC<CreateJobModalProps> = ({
           {/* Job Description with Auto-Extract */}
           <div>
             <div className="flex items-center justify-between mb-1.5">
-              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">
-                Job Description Text *
+              <label className="block text-xs font-bold text-zinc-800">
+                Job Description *
               </label>
               <button
                 type="button"
                 onClick={handleExtractFromJD}
                 disabled={isExtracting || !description.trim()}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-yellow-400 hover:text-yellow-300 disabled:opacity-50 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-yellow-700 hover:text-yellow-600 disabled:opacity-40 transition-colors cursor-pointer"
               >
-                <Sparkles className={`w-3.5 h-3.5 text-yellow-400 ${isExtracting ? 'animate-spin' : ''}`} />
-                <span>{isExtracting ? 'Extracting with AI...' : 'Auto-Extract Requirements'}</span>
+                <Sparkles className={`w-3.5 h-3.5 ${isExtracting ? 'animate-spin' : ''}`} />
+                <span>{isExtracting ? 'Extracting…' : '✨ Auto-Extract Skills'}</span>
               </button>
             </div>
             <textarea
               rows={4}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Paste complete Job Description here..."
-              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-sm focus:outline-hidden focus:ring-2 focus:ring-indigo-500 font-mono text-xs leading-relaxed"
+              placeholder="Paste the full job description here. The AI will auto-extract required and preferred skills from it."
+              className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-zinc-300 text-sm text-zinc-950 font-medium placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400 leading-relaxed shadow-2xs"
               required
             />
           </div>
 
           {/* Required Skills (Mandatory for MATCHED) */}
-          <div className="p-4 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60">
-            <div className="flex items-center justify-between mb-2">
-              <label className="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+          <div className="p-4 rounded-xl bg-indigo-50/70 border border-indigo-100">
+            <div className="flex items-center justify-between mb-3">
+              <label className="text-xs font-bold text-indigo-900 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-indigo-500" />
-                Required Mandatory Skills ({requiredSkills.length})
+                Required Skills ({requiredSkills.length})
               </label>
-              <span className="text-[10px] text-slate-400 font-medium">Missing these flags candidate missing mandatory</span>
+              <span className="text-[10px] text-indigo-500 font-medium">Missing these = candidate flagged</span>
             </div>
 
             <div className="flex flex-wrap gap-2 mb-3">
               {requiredSkills.map((skill) => (
                 <span
                   key={skill}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/20 text-xs font-semibold"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white text-indigo-700 border border-indigo-200 text-xs font-semibold shadow-xs"
                 >
                   {skill}
                   <button
                     type="button"
                     onClick={() => removeRequiredSkill(skill)}
-                    className="hover:text-rose-500 transition-colors"
+                    className="hover:text-red-500 transition-colors ml-0.5"
                   >
                     <X className="w-3 h-3" />
                   </button>
@@ -351,40 +351,40 @@ export const CreateJobModal: React.FC<CreateJobModalProps> = ({
                 value={newSkillInput}
                 onChange={(e) => setNewSkillInput(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addRequiredSkill(); } }}
-                placeholder="Add required skill (e.g. FastAPI, PostgreSQL) and press Enter"
-                className="flex-1 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs"
+                placeholder="Type a skill and press Enter or Add…"
+                className="flex-1 px-3.5 py-2 rounded-lg bg-white border border-zinc-300 text-xs text-zinc-950 font-medium placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400 shadow-2xs"
               />
               <button
                 type="button"
                 onClick={addRequiredSkill}
-                className="px-3 py-1.5 rounded-lg bg-yellow-400 text-black text-xs font-black hover:bg-yellow-300"
+                className="px-4 py-2 rounded-lg bg-yellow-400 hover:bg-yellow-300 text-black text-xs font-black shadow-xs transition-colors cursor-pointer"
               >
-                Add
+                + Add
               </button>
             </div>
           </div>
 
           {/* Preferred Skills */}
-          <div className="p-4 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60">
-            <div className="flex items-center justify-between mb-2">
-              <label className="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+          <div className="p-4 rounded-xl bg-purple-50/60 border border-purple-100">
+            <div className="flex items-center justify-between mb-3">
+              <label className="text-xs font-bold text-purple-900 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-purple-500" />
-                Preferred / Nice-to-Have Skills ({preferredSkills.length})
+                Preferred Skills ({preferredSkills.length})
               </label>
-              <span className="text-[10px] text-slate-400 font-medium">Boosts score but not strictly mandatory</span>
+              <span className="text-[10px] text-purple-600 font-medium">Boosts score, not mandatory</span>
             </div>
 
             <div className="flex flex-wrap gap-2 mb-3">
               {preferredSkills.map((skill) => (
                 <span
                   key={skill}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-purple-500/10 text-purple-700 dark:text-purple-300 border border-purple-500/20 text-xs font-semibold"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white text-purple-700 border border-purple-200 text-xs font-semibold shadow-xs"
                 >
                   {skill}
                   <button
                     type="button"
                     onClick={() => removePreferredSkill(skill)}
-                    className="hover:text-rose-500 transition-colors"
+                    className="hover:text-red-500 transition-colors ml-0.5"
                   >
                     <X className="w-3 h-3" />
                   </button>
@@ -398,15 +398,15 @@ export const CreateJobModal: React.FC<CreateJobModalProps> = ({
                 value={newPrefSkillInput}
                 onChange={(e) => setNewPrefSkillInput(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addPreferredSkill(); } }}
-                placeholder="Add preferred skill (e.g. Docker, AWS, Redis)"
-                className="flex-1 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs"
+                placeholder="Type a preferred skill and press Enter or Add…"
+                className="flex-1 px-3.5 py-2 rounded-lg bg-white border border-zinc-300 text-xs text-zinc-950 font-medium placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400 shadow-2xs"
               />
               <button
                 type="button"
                 onClick={addPreferredSkill}
-                className="px-3 py-1.5 rounded-lg bg-zinc-800 text-yellow-300 border border-yellow-400/30 text-xs font-bold hover:bg-zinc-700"
+                className="px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold transition-colors cursor-pointer"
               >
-                Add
+                + Add
               </button>
             </div>
           </div>
@@ -416,89 +416,53 @@ export const CreateJobModal: React.FC<CreateJobModalProps> = ({
             <button
               type="button"
               onClick={() => setShowAdvanced(!showAdvanced)}
-              className="flex items-center gap-2 text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-indigo-600 transition-colors"
+              className="flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-gray-800 transition-colors group"
             >
-              <SlidersHorizontal className="w-4 h-4" />
-              <span>{showAdvanced ? 'Hide Advanced Scoring Weights & Thresholds' : 'Configure Scoring Weights & Mandatory Rules'}</span>
+              <SlidersHorizontal className="w-4 h-4 group-hover:text-indigo-500 transition-colors" />
+              <span>{showAdvanced ? '▲ Hide Scoring Weights' : '▼ Advanced: Configure Scoring Weights'}</span>
             </button>
 
             {showAdvanced && (
-              <div className="mt-3 p-4 rounded-xl bg-slate-900 text-white space-y-4 text-xs border border-slate-800">
-                <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                  <span className="font-bold">Transparent Scoring Weight Matrix</span>
-                  <span className={`font-mono font-bold ${totalWeight === 100 ? 'text-emerald-400' : 'text-rose-400'}`}>
-                    Total: {totalWeight}% (Must be 100%)
+              <div className="mt-3 p-4 rounded-xl bg-gray-50 border border-gray-200 space-y-4 text-xs">
+                <div className="flex items-center justify-between pb-2 border-b border-gray-200">
+                  <span className="font-bold text-gray-700">Scoring Weight Matrix</span>
+                  <span className={`font-mono font-bold px-2 py-0.5 rounded-full text-[11px] ${totalWeight === 100 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                    {totalWeight}% / 100%
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   <div>
-                    <label className="text-[11px] text-slate-400 block mb-1">Required Skills: {weightRequired}%</label>
-                    <input
-                      type="range"
-                      min="0"
-                      max="60"
-                      value={weightRequired}
-                      onChange={(e) => setWeightRequired(parseInt(e.target.value))}
-                      className="w-full accent-indigo-500"
-                    />
+                    <label className="text-[11px] text-gray-600 font-semibold block mb-1">Required Skills: <strong>{weightRequired}%</strong></label>
+                    <input type="range" min="0" max="60" value={weightRequired} onChange={(e) => setWeightRequired(parseInt(e.target.value))} className="w-full accent-indigo-500" />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 block mb-1">Experience: {weightExp}%</label>
-                    <input
-                      type="range"
-                      min="0"
-                      max="50"
-                      value={weightExp}
-                      onChange={(e) => setWeightExp(parseInt(e.target.value))}
-                      className="w-full accent-indigo-500"
-                    />
+                    <label className="text-[11px] text-gray-600 font-semibold block mb-1">Experience: <strong>{weightExp}%</strong></label>
+                    <input type="range" min="0" max="50" value={weightExp} onChange={(e) => setWeightExp(parseInt(e.target.value))} className="w-full accent-indigo-500" />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 block mb-1">Projects: {weightProjects}%</label>
-                    <input
-                      type="range"
-                      min="0"
-                      max="40"
-                      value={weightProjects}
-                      onChange={(e) => setWeightProjects(parseInt(e.target.value))}
-                      className="w-full accent-indigo-500"
-                    />
+                    <label className="text-[11px] text-gray-600 font-semibold block mb-1">Projects: <strong>{weightProjects}%</strong></label>
+                    <input type="range" min="0" max="40" value={weightProjects} onChange={(e) => setWeightProjects(parseInt(e.target.value))} className="w-full accent-indigo-500" />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 block mb-1">Education: {weightEdu}%</label>
-                    <input
-                      type="range"
-                      min="0"
-                      max="30"
-                      value={weightEdu}
-                      onChange={(e) => setWeightEdu(parseInt(e.target.value))}
-                      className="w-full accent-indigo-500"
-                    />
+                    <label className="text-[11px] text-gray-600 font-semibold block mb-1">Education: <strong>{weightEdu}%</strong></label>
+                    <input type="range" min="0" max="30" value={weightEdu} onChange={(e) => setWeightEdu(parseInt(e.target.value))} className="w-full accent-indigo-500" />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 block mb-1">Preferred Skills: {weightPref}%</label>
-                    <input
-                      type="range"
-                      min="0"
-                      max="30"
-                      value={weightPref}
-                      onChange={(e) => setWeightPref(parseInt(e.target.value))}
-                      className="w-full accent-indigo-500"
-                    />
+                    <label className="text-[11px] text-gray-600 font-semibold block mb-1">Preferred Skills: <strong>{weightPref}%</strong></label>
+                    <input type="range" min="0" max="30" value={weightPref} onChange={(e) => setWeightPref(parseInt(e.target.value))} className="w-full accent-indigo-500" />
                   </div>
                 </div>
 
-                {/* Mandatory Rule Selector */}
-                <div className="pt-2 border-t border-slate-800">
-                  <label className="font-bold text-slate-300 block mb-1">Missing Mandatory Skill Policy</label>
+                <div className="pt-2 border-t border-gray-200">
+                  <label className="font-bold text-gray-700 block mb-1.5">When mandatory skill is missing:</label>
                   <select
                     value={mandatoryRule}
                     onChange={(e: any) => setMandatoryRule(e.target.value)}
-                    className="w-full px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs text-white"
+                    className="w-full px-3 py-2 rounded-lg bg-white border border-gray-200 text-xs text-gray-900"
                   >
-                    <option value="downgrade_to_partial">Downgrade MATCHED to PARTIALLY MATCHED if missing mandatory skill</option>
-                    <option value="downgrade_to_not_matched">Strict: Downgrade directly to NOT MATCHED if missing mandatory skill</option>
+                    <option value="downgrade_to_partial">Downgrade to PARTIAL MATCH (lenient)</option>
+                    <option value="downgrade_to_not_matched">Downgrade to NOT MATCHED (strict)</option>
                   </select>
                 </div>
               </div>
@@ -506,20 +470,20 @@ export const CreateJobModal: React.FC<CreateJobModalProps> = ({
           </div>
 
           {/* Form Actions */}
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-gray-100">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="px-4 py-2 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-100 transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting || totalWeight !== 100}
-              className="px-5 py-2.5 rounded-xl bg-yellow-400 hover:bg-yellow-300 disabled:opacity-50 text-black text-xs sm:text-sm font-black shadow-md shadow-yellow-400/20 transition-all active:scale-95 cursor-pointer"
+              className="px-6 py-2.5 rounded-xl bg-yellow-400 hover:bg-yellow-300 disabled:opacity-50 disabled:cursor-not-allowed text-black text-sm font-black shadow-sm transition-all active:scale-95"
             >
-              {isSubmitting ? 'Creating Job...' : 'Save & Publish Job'}
+              {isSubmitting ? 'Creating…' : '✓ Create Job Opening'}
             </button>
           </div>
         </form>
